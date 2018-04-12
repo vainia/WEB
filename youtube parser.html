@@ -1,0 +1,17 @@
+<table id="videos">
+</table>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $.getJSON('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UCt7sv-NKh44rHAEb-qCCxvA&maxResults=50&key=AIzaSyBYxHKT4ki7TwxGa4nJw2ojTqywRPjxyDQ', function(data) {
+            for(var i=1;i<data.items.length;i+=2){
+                $('#videos').append('<tr><td><iframe width="620" height="180" src="https://www.youtube.com/embed/' +
+                data.items[i].id.videoId +
+                '?autohide=1&theme=light&color=white&showinfo=0&rel=0&vq=hd1080" frameborder="0" allowfullscreen></iframe></td>' +
+                '<td><iframe width="620" height="180" src="https://www.youtube.com/embed/' +
+                data.items[i-1].id.videoId +
+                '?autohide=1&theme=light&color=white&showinfo=0&rel=0&vq=hd1080" frameborder="0" allowfullscreen></iframe></td><tr>');
+            }
+    });
+});
+</script>

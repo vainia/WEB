@@ -1,0 +1,14 @@
+RewriteEngine on
+RewriteBase /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.php\ HTTP
+RewriteRule ^([^.]+)\.php /$1 [R=301,L]
+RewriteCond %{REQUEST_URI} !(\.[^./]+)$
+RewriteCond %{REQUEST_fileNAME} !-d
+RewriteCond %{REQUEST_fileNAME} !-f
+RewriteRule (.*) /$1.php
+AddHandler application/x-httpd-php htm html
+<FilesMatch "(.(sql|rtf|csv|xls)|~)$">
+Order allow,deny
+Deny from all
+Satisfy All
+</FilesMatch>
